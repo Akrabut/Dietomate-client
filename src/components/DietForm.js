@@ -45,6 +45,7 @@ const DietForm = () => {
     setformSent(true)
   }
 
+  // TODO: DISPLAY NUTRITION PLAN
   if (formSent) return 'GENERATED MENU PLACEHOLDER'
 
   return (
@@ -82,9 +83,9 @@ const DietForm = () => {
             <label>Age</label>
           </Grid.Column>
           <Form.Field required as={Grid.Column} >
-            <input placeholder="##"
-            type="text" minLength="2" maxLength="2"
-            value={activeAge} onChange={validateAge} />
+            <Form.Input placeholder="##"
+              type="text" minLength="2" maxLength="2"
+              value={activeAge} onChange={validateAge} />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
@@ -92,10 +93,10 @@ const DietForm = () => {
             <label>Weight</label>
           </Grid.Column>
           <Form.Field required as={Grid.Column}>
-            <input placeholder="Enter in kilograms"
-            type="text" minLength="2" maxLength="3"
-            value={activeWeight} onChange={validateWeight}
-             />
+            <Form.Input placeholder="Enter in kilograms"
+              type="text" minLength="2" maxLength="3"
+              value={activeWeight} onChange={validateWeight}
+            />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
@@ -103,9 +104,9 @@ const DietForm = () => {
             <label>Height</label>
           </Grid.Column>
           <Form.Field required as={Grid.Column}>
-            <input placeholder="Enter in centimeters"
-            type="text" minLength="3" maxLength="3"
-            value={activeHeight} onChange={validateHeight} />
+            <Form.Input placeholder="Enter in centimeters"
+              type="text" minLength="3" maxLength="3"
+              value={activeHeight} onChange={validateHeight} />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
@@ -130,7 +131,8 @@ const DietForm = () => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Button type="submit" onClick={handleSubmit}>Get the plan!</Button>
+          <Button type="submit" onClick={handleSubmit}
+            disabled={!activeTarget || !activeAge || !activeHeight || !activeSex || !activeWeight}>Get the plan!</Button>
         </Grid.Row>
       </Form>
     </Segment>
