@@ -1,22 +1,62 @@
-import React, { useState } from 'react'
-import { Segment, Grid, Form, Input, Menu } from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react'
+import { Segment, Grid, Form, Menu, Button } from 'semantic-ui-react'
+import { sendDietForm } from '../services/diet_form'
 
 const DietForm = () => {
-  const [activeTarget, setactiveTarget] = useState('')
-  // hahaha he said sex
-  const [activeSex, setactiveSex] = useState('')
+  const [formSent, setformSent] = useState(false)
 
-  const leftFloat = { float: 'left', fontWeight: 'bold' }
+  const [activeTarget, setactiveTarget] = useState('lose-weight')
+  // hahaha he said sex
+  const [activeSex, setactiveSex] = useState('male')
+
+  const [activeAge, setactiveAge] = useState('')
+  const [activeWeight, setactiveWeight] = useState('')
+  const [activeHeight, setactiveHeight] = useState('')
+
+  useEffect(() => {
+    setformSent(false)
+  }, [])
+
+  const validateAge = (event) => {
+    if (event.target.value && !RegExp('([1-9]([0-9]?))').test(event.target.value)) return
+    setactiveAge(event.target.value)
+  }
+
+  const validateWeight = (event) => {
+    if (event.target.value && !RegExp('([1-9]([0-9]?)([0-9]?))').test(event.target.value)) return
+    setactiveWeight(event.target.value)
+  }
+
+  const validateHeight = (event) => {
+    if (event.target.value && !RegExp('([1-2]([0-9]?)([0-9]?))').test(event.target.value)) return
+    setactiveHeight(event.target.value)
+  }
+
+  const handleSubmit = async () => {
+    await sendDietForm({
+      diet: {
+        target: activeTarget,
+        sex: activeSex,
+        age: activeAge,
+        weight: activeWeight,
+        height: activeHeight,
+      }
+    })
+    console.log('hi');
+    setformSent(true)
+  }
+
+  if (formSent) return 'GENERATED MENU PLACEHOLDER'
 
   return (
     <Segment>
-      <Grid columns={1} centered={true} padded={true}>
-
-        <Form>
-          <Grid.Row>
-            <label style={leftFloat}>I want to</label>
-            <br></br>
-            <Menu compact={true}>
+      <Form as={Grid} columns={2} centered={true} padded={true} onSubmit={handleSubmit}>
+        <Grid.Row>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <label>I want to</label>
+          </Grid.Column>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <Menu compact stackable>
               <Menu.Item
                 name="lose-weight"
                 content="Lose weight"
@@ -36,28 +76,45 @@ const DietForm = () => {
                 onClick={(event, { name }) => setactiveTarget(name)}
               />
             </Menu>
-          </Grid.Row>
-          <Grid.Row>
-            <Form.Field>
-              <label style={leftFloat}>Age</label>
-              <Input style={leftFloat} placeholder="##" />
-            </Form.Field>
-          </Grid.Row>
-          <Grid.Row>
-            <Form.Field>
-              <label style={leftFloat}>Weight</label>
-              <Input style={leftFloat} placeholder="Enter in kilograms" />
-            </Form.Field>
-          </Grid.Row>
-          <Grid.Row>
-            <Form.Field>
-              <label style={leftFloat}>Height</label>
-              <Input style={leftFloat} placeholder="Enter in centimeters" />
-            </Form.Field>
-          </Grid.Row>
-          <Grid.Row>
-            <label style={leftFloat}>I am</label>
-            <Menu compact={true}>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <label>Age</label>
+          </Grid.Column>
+          <Form.Field required as={Grid.Column} >
+            <input placeholder="##"
+            type="text" minLength="2" maxLength="2"
+            value={activeAge} onChange={validateAge} />
+          </Form.Field>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <label>Weight</label>
+          </Grid.Column>
+          <Form.Field required as={Grid.Column}>
+            <input placeholder="Enter in kilograms"
+            type="text" minLength="2" maxLength="3"
+            value={activeWeight} onChange={validateWeight}
+             />
+          </Form.Field>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <label>Height</label>
+          </Grid.Column>
+          <Form.Field required as={Grid.Column}>
+            <input placeholder="Enter in centimeters"
+            type="text" minLength="3" maxLength="3"
+            value={activeHeight} onChange={validateHeight} />
+          </Form.Field>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+            <label>I am</label>
+          </Grid.Column>
+          <Grid.Column textAlign={'center'}>
+            <Menu compact stackable>
               <Menu.Item
                 name="male"
                 content="Male"
@@ -71,9 +128,12 @@ const DietForm = () => {
                 onClick={(event, { name }) => setactiveSex(name)}
               />
             </Menu>
-          </Grid.Row>
-        </Form>
-      </Grid>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Button type="submit">Get the plan!</Button>
+        </Grid.Row>
+      </Form>
     </Segment>
   )
 }
