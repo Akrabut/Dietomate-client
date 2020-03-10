@@ -42,7 +42,6 @@ const DietForm = () => {
         height: activeHeight,
       }
     })
-    console.log('hi');
     setformSent(true)
   }
 
@@ -50,7 +49,7 @@ const DietForm = () => {
 
   return (
     <Segment>
-      <Form as={Grid} columns={2} centered={true} padded={true} onSubmit={handleSubmit}>
+      <Form as={Grid} columns={2} centered={true} padded={true}>
         <Grid.Row>
           <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
             <label>I want to</label>
@@ -131,7 +130,7 @@ const DietForm = () => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Button type="submit">Get the plan!</Button>
+          <Button type="submit" onClick={handleSubmit}>Get the plan!</Button>
         </Grid.Row>
       </Form>
     </Segment>
