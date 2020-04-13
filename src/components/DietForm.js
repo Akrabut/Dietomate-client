@@ -50,12 +50,12 @@ const DietForm = () => {
 
   return (
     <Segment>
-      <Form as={Grid} columns={2} centered={true} padded={true}>
+      <Form as={Grid} columns={2} centered padded divided='vertically'>
         <Grid.Row>
-          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+          <Grid.Column textAlign='center' verticalAlign='middle'>
             <label>I want to</label>
           </Grid.Column>
-          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+          <Grid.Column textAlign='center' verticalAlign='middle'>
             <Menu compact stackable>
               <Menu.Item
                 name="lose-weight"
@@ -79,34 +79,36 @@ const DietForm = () => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+          <Grid.Column textAlign='center' verticalAlign='middle'>
             <label>Age</label>
           </Grid.Column>
-          <Form.Field required as={Grid.Column} >
+          <Form.Field required as={Grid.Column} textAlign='center'>
             <Form.Input placeholder="##"
               type="text" minLength="2" maxLength="2"
-              value={activeAge} onChange={validateAge} />
-          </Form.Field>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
-            <label>Weight</label>
-          </Grid.Column>
-          <Form.Field required as={Grid.Column}>
-            <Form.Input placeholder="Enter in kilograms"
-              type="text" minLength="2" maxLength="3"
-              value={activeWeight} onChange={validateWeight}
+              value={activeAge} onChange={validateAge} style={{ width: '60%' }}
             />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign={'center'} verticalAlign={'middle'}>
+          <Grid.Column textAlign='center' verticalAlign={'middle'}>
+            <label>Weight</label>
+          </Grid.Column>
+          <Form.Field required as={Grid.Column} textAlign='center'>
+            <Form.Input placeholder="Enter in kilograms"
+              type="text" minLength="2" maxLength="3"
+              value={activeWeight} onChange={validateWeight} style={{ width: '60%' }}
+            />
+          </Form.Field>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column textAlign='center' verticalAlign='middle'>
             <label>Height</label>
           </Grid.Column>
-          <Form.Field required as={Grid.Column}>
+          <Form.Field required as={Grid.Column} textAlign='center'>
             <Form.Input placeholder="Enter in centimeters"
               type="text" minLength="3" maxLength="3"
-              value={activeHeight} onChange={validateHeight} />
+              value={activeHeight} onChange={validateHeight} style={{ width: '60%' }}
+              />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
@@ -132,7 +134,8 @@ const DietForm = () => {
         </Grid.Row>
         <Grid.Row>
           <Button type="submit" onClick={handleSubmit}
-            disabled={!activeTarget || !activeAge || !activeHeight || !activeSex || !activeWeight}>Get the plan!</Button>
+            disabled={!activeTarget || !activeAge || !activeHeight || !activeSex || !activeWeight}>Get the plan!
+          </Button>
         </Grid.Row>
       </Form>
     </Segment>
