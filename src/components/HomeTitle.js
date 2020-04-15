@@ -3,7 +3,7 @@ import React from 'react'
 // Who knows when we might need a 1337 ReaCtiVe sUpEr home title?
 const HomeTitle = () => {
   return (
-    <div className='home-title'>
+    <div className='home-title' style={{marginTop: '1vw'}}>
       <h1>Automate Your Diet</h1>
       <h2>Control Your Health</h2>
       <h4>Dietomate creates an optimal nutrition plan for you, so that you don't depend on nutritionists, fitness coaches and diaries
