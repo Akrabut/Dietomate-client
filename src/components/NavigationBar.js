@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Sidebar, Menu, Icon } from 'semantic-ui-react'
+import AuthModal from './AuthModal'
 
 const NavigationBar = () => {
   useEffect(() => {
@@ -20,13 +21,7 @@ const NavigationBar = () => {
       </Menu.Item>
       <Menu.Menu
         position='right'>
-      <Menu.Item
-        // as={link}
-        name='Login'
-        content='Login'
-        // onClick
-        >
-      </Menu.Item>
+        <AuthModal/>
       <Menu.Item
         // as={link}
         name='Sign up'
