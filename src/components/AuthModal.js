@@ -43,7 +43,8 @@ const AuthModal = () => {
 
       <Modal
         open={modalOpen}
-        onClose={handleModalClose}>
+        onClose={handleModalClose}
+        size='tiny'>
         <Menu>
           <Menu.Item
             onClick={() => setSelected('login')}
@@ -58,7 +59,9 @@ const AuthModal = () => {
             <p>Sign Up</p>
           </Menu.Item>
         </Menu>
+        <article style={{padding: '2%'}}>
         {renderCorrectForm()}
+        </article>
       </Modal>
     </Menu.Menu>
   )
