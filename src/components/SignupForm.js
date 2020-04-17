@@ -6,16 +6,21 @@ const SignupForm = () => {
     <Form>
       <Form.Field>
         <label>Name</label>
-        <input placeholder='username'></input>
+        <Form.Input placeholder='username'></Form.Input>
       </Form.Field>
       <Form.Field>
         <label>Email</label>
-        <input placeholder='Email' type='email'></input>
+        <Form.Input placeholder='Email' type='email'></Form.Input>
       </Form.Field>
       <Form.Field>
         <label>Password</label>
-        <input placeholder='Password' type='password'></input>
+        <Form.Input placeholder='Password' type='password'></Form.Input>
       </Form.Field>
+      <Form.Button
+        type='submit'
+        onSubmit='handleSubmit'>
+        Sign Up
+      </Form.Button>
     </Form>
   )
 }

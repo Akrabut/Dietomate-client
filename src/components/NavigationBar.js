@@ -19,17 +19,18 @@ const NavigationBar = () => {
         <Icon name='lemon outline' />
         <p>Dietomate - Automate Your Diet!</p>
       </Menu.Item>
-      <Menu.Menu
+      <AuthModal />
+      {/* <Menu.Menu
         position='right'>
-        <AuthModal/>
+        <Menu.Item
+          name='Log In'
+          content='Log In'>
+        </Menu.Item>
       <Menu.Item
-        // as={link}
         name='Sign up'
-        content='Sign up'
-      // onClick
-      >
+        content='Sign up'>
       </Menu.Item>
-      </Menu.Menu>
+      </Menu.Menu> */}
     </Sidebar>
   )
 }
