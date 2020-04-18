@@ -19,9 +19,9 @@ const AuthModal = () => {
 
   const renderCorrectForm = () => {
     if (selected === 'login') {
-      return <LoginForm />
+      return <LoginForm handleModalClose={handleModalClose} />
     } else if (selected === 'signup') {
-      return <SignupForm />
+      return <SignupForm handleModalClose={handleModalClose} />
     }
   }
 
@@ -62,7 +62,7 @@ const AuthModal = () => {
             <p>Sign Up</p>
           </Menu.Item>
         </Menu>
-        <article style={{ padding: '3%' }}>
+        <article style={{ margin: '5%' }}>
           {renderCorrectForm()}
         </article>
       </Modal>
