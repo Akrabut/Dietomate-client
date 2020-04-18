@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Menu, Icon } from 'semantic-ui-react'
+import { Modal, Menu, Icon, Header } from 'semantic-ui-react'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
 
@@ -44,7 +44,10 @@ const AuthModal = () => {
       <Modal
         open={modalOpen}
         onClose={handleModalClose}
-        size='tiny'>
+        size='mini'>
+        <Header textAlign='center' style={{ borderBottom: 0 }}>
+          Log In to Dietomate
+        </Header>
         <Menu>
           <Menu.Item
             onClick={() => setSelected('login')}
@@ -59,8 +62,8 @@ const AuthModal = () => {
             <p>Sign Up</p>
           </Menu.Item>
         </Menu>
-        <article style={{padding: '2%'}}>
-        {renderCorrectForm()}
+        <article style={{ padding: '3%' }}>
+          {renderCorrectForm()}
         </article>
       </Modal>
     </Menu.Menu>

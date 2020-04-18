@@ -20,17 +20,6 @@ const NavigationBar = () => {
         <p>Dietomate - Automate Your Diet!</p>
       </Menu.Item>
       <AuthModal />
-      {/* <Menu.Menu
-        position='right'>
-        <Menu.Item
-          name='Log In'
-          content='Log In'>
-        </Menu.Item>
-      <Menu.Item
-        name='Sign up'
-        content='Sign up'>
-      </Menu.Item>
-      </Menu.Menu> */}
     </Sidebar>
   )
 }

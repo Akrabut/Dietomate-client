@@ -14,7 +14,8 @@ const LoginForm = () => {
       </Form.Field>
       <Form.Button
         type='submit'
-        onSubmit='handleSubmit'>
+        onSubmit='handleSubmit'
+        fluid>
         Log In
       </Form.Button>
     </Form>

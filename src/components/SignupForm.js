@@ -18,7 +18,8 @@ const SignupForm = () => {
       </Form.Field>
       <Form.Button
         type='submit'
-        onSubmit='handleSubmit'>
+        onSubmit='handleSubmit'
+        fluid>
         Sign Up
       </Form.Button>
     </Form>
