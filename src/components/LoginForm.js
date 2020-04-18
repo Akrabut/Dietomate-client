@@ -1,17 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'semantic-ui-react'
+import { login } from '../services/user'
+import AuthMessage from './AuthMessage'
 
 const LoginForm = ({ handleModalClose }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [message, setMessage] = useState({ header: '', content: '', result: null })
 
-  const handleSubmit = e => {
+  useEffect(() => {
+    // if login failed display a message and keep modal open
+    if (message.result === 'error') {
+      setTimeout(() => {
+        setMessage({ header: '', content: '', result: null })
+      }, 4000)
+      return
+    } else if (message.result === 'success') {
+      setTimeout(() => {
+        setEmail('')
+        setPassword('')
+        setMessage({ header: '', content: '', result: null })
+        handleModalClose()
+      }, 3000)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message])
+
+  const handleResponse = res => {
+    res
+      ? setMessage({
+        header: 'Login successful',
+        content: `Hello ${res.user.name}!`,
+        result: 'success'
+      })
+      : setMessage({
+        header: 'Login failed',
+        content: `Invalid email or password`,
+        result: 'error'
+      })
+  }
+
+  const handleSubmit = async e => {
     e.preventDefault()
-    
-    
-    setEmail('')
-    setPassword('')
-    handleModalClose()
+    const res = await login({
+      email: email,
+      password: password,
+    })
+    handleResponse(res)
   }
 
   return (
@@ -34,6 +69,11 @@ const LoginForm = ({ handleModalClose }) => {
           maxLength='15'
           onChange={e => setPassword(e.target.value)} />
       </Form.Field>
+      <AuthMessage
+        result={message.result}
+        header={message.header}
+        content={message.content}
+      />
       <Button
         type='submit'
         fluid>
