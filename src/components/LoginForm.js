@@ -1,47 +1,70 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'semantic-ui-react'
-import { login } from '../services/user'
-import { setUserInLocalStorage } from '../helpers/auth'
 import AuthMessage from './AuthMessage'
+import { login } from '../actions/user'
+import { connect } from 'react-redux'
 
-const LoginForm = ({ handleModalClose }) => {
+const LoginForm = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [message, setMessage] = useState({ header: '', content: '', result: null })
+  // const [message, setMessage] = useState({ header: '', content: '', result: null })
+  // this could be packaged into an object but the following useeffect will infinitely loop since {} !== {}
+  const [messageHeader, setMessageHeader] = useState('')
+  const [messageContent, setMessageContent] = useState('')
+  const [messageResult, setMessageResult] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const nullifyMessage = () => {
+    setMessageHeader('')
+    setMessageContent('')
+    setMessageResult('')
+  }
+
   useEffect(() => {
+    let timedMessage
     // if login failed display a message and keep modal open
-    if (message.result === 'error') {
-      setTimeout(() => {
-        setMessage({ header: '', content: '', result: null })
+    if (messageResult === 'error') {
+      timedMessage = setTimeout(() => {
+        // setMessage({ header: '', content: '', result: null })
+        nullifyMessage()
       }, 4000)
       return
-    } else if (message.result === 'success') {
-      setTimeout(() => {
+    } else if (messageResult === 'success') {
+      timedMessage = setTimeout(() => {
         setEmail('')
         setPassword('')
-        setMessage({ header: '', content: '', result: null })
-        handleModalClose()
+        nullifyMessage()
+        props.handleModalClose()
       }, 2000)
     }
+    return () => {
+      // if modal is closed before settimeout ends
+      clearTimeout(timedMessage)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [message])
+  }, [messageResult])
 
-  const handleResponse = res => {
-    if (res) {
-      setMessage({
-        header: 'Login successful',
-        content: `Hello ${res.user.name}!`,
-        result: 'success'
-      })
-      setUserInLocalStorage(res)
+  const populateMessage = (header, content, result) => {
+    setMessageHeader(header)
+    setMessageContent(content)
+    setMessageResult(result)
+  }
+
+  const handleResponse = () => {
+    if (props.user.name) {
+      populateMessage('Login successful', `Hello ${props.user.name}!`, 'success')
+      // setMessage({
+      //   header: 'Login successful',
+      //   content: `Hello ${props.user.name}!`,
+      //   result: 'success'
+      // })
     } else {
-      setMessage({
-        header: 'Login failed',
-        content: `Invalid email or password`,
-        result: 'error'
-      })
+      populateMessage('Login failed', `Invalid email or password`, 'error')
+      // setMessage({
+      //   header: 'Login failed',
+      //   content: `Invalid email or password`,
+      //   result: 'error'
+      // })
     }
   }
 
@@ -50,11 +73,12 @@ const LoginForm = ({ handleModalClose }) => {
     if (!email || !password) return
 
     setLoading(true)
-    const res = await login({
+    await props.login({
       email: email,
       password: password,
     })
-    handleResponse(res)
+    console.log(props.user);
+    handleResponse()
     setLoading(false)
   }
 
@@ -79,9 +103,9 @@ const LoginForm = ({ handleModalClose }) => {
           onChange={e => setPassword(e.target.value)} />
       </Form.Field>
       <AuthMessage
-        result={message.result}
-        header={message.header}
-        content={message.content}
+        result={messageResult}
+        header={messageHeader}
+        content={messageContent}
       />
       <Button
         type='submit'
@@ -92,4 +116,15 @@ const LoginForm = ({ handleModalClose }) => {
   )
 }
 
-export default LoginForm
+const mapDispatchToProps = {
+  login,
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  }
+}
+
+const connectedLoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connectedLoginForm

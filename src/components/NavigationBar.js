@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Sidebar, Menu, Icon } from 'semantic-ui-react'
 import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInMenu from './LoggedInMenu'
 
 const NavigationBar = () => {
+  const [loggedUser, setLoggedUser] = useState('')
 
   const displayCorrectMenu = () => {
     return window.localStorage.getItem('loggedDietomateUsername')
