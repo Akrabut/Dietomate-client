@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { login } from '../services/user'
+import { setUserInLocalStorage } from '../helpers/auth'
 import AuthMessage from './AuthMessage'
 
 const LoginForm = ({ handleModalClose }) => {
@@ -28,23 +29,26 @@ const LoginForm = ({ handleModalClose }) => {
   }, [message])
 
   const handleResponse = res => {
-    res
-      ? setMessage({
+    if (res) {
+      setMessage({
         header: 'Login successful',
         content: `Hello ${res.user.name}!`,
         result: 'success'
       })
-      : setMessage({
+      setUserInLocalStorage(res)
+    } else {
+      setMessage({
         header: 'Login failed',
         content: `Invalid email or password`,
         result: 'error'
       })
+    }
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
     if (!email || !password) return
-  
+
     setLoading(true)
     const res = await login({
       email: email,

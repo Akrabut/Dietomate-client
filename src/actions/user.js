@@ -1,9 +1,12 @@
-const login = (username, password) => {
+const login = (res) => {
+  setUserInLocalStorage(res)
   return {
     type: 'LOGIN',
     data: {
-      username: username,
-      password: password,
+      user: {
+        name: res.user.name,
+        email: res.user.email,
+      },
     }
   }
 }

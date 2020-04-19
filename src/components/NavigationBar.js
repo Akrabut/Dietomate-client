@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react'
 import { Sidebar, Menu, Icon } from 'semantic-ui-react'
-import AuthModal from './AuthModal'
+import LoggedOutMenu from './LoggedOutMenu'
+import LoggedInMenu from './LoggedInMenu'
 
 const NavigationBar = () => {
-  useEffect(() => {
-    // TODO: CHECK IF USER IS LOGGED IN
-  }, [])
+
+  const displayCorrectMenu = () => {
+    return window.localStorage.getItem('loggedDietomateUsername')
+      ? <LoggedInMenu />
+      : <LoggedOutMenu />
+  }
 
   return (
     <Sidebar
@@ -19,7 +23,7 @@ const NavigationBar = () => {
         <Icon name='lemon outline' />
         <p>Dietomate - Automate Your Diet!</p>
       </Menu.Item>
-      <AuthModal />
+      {displayCorrectMenu()}
     </Sidebar>
   )
 }
