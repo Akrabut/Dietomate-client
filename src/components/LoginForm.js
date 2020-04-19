@@ -7,6 +7,7 @@ const LoginForm = ({ handleModalClose }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState({ header: '', content: '', result: null })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     // if login failed display a message and keep modal open
@@ -21,7 +22,7 @@ const LoginForm = ({ handleModalClose }) => {
         setPassword('')
         setMessage({ header: '', content: '', result: null })
         handleModalClose()
-      }, 3000)
+      }, 2000)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message])
@@ -42,15 +43,19 @@ const LoginForm = ({ handleModalClose }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    if (!email || !password) return
+  
+    setLoading(true)
     const res = await login({
       email: email,
       password: password,
     })
     handleResponse(res)
+    setLoading(false)
   }
 
   return (
-    <Form onSubmit={e => handleSubmit(e)}>
+    <Form onSubmit={e => handleSubmit(e)} loading={loading}>
       <Form.Field>
         <label>Email</label>
         <Form.Input

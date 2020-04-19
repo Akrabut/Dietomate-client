@@ -8,7 +8,8 @@ const SignupForm = ({ handleModalClose }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-
+    if (!email || !password) return
+  
     setUsername('')
     setEmail('')
     setPassword('')

@@ -8,8 +8,7 @@ const login = async (userObject) => {
     const res = await axios.post(`${ENDPOINT}/auth/login`, userObject)
     return res.data
   } catch (err) {
-    // TODO: SENSIBLE ERROR DISPLAY
-    console.log(err)
+    // error is handled in the component
     return false
   }
 }
@@ -19,8 +18,8 @@ const signup = async (userObject) => {
     const res = await axios.post(`${ENDPOINT}/user/register`, userObject)
     return res.data
   } catch (err) {
-    // TODO: SENSIBLE ERROR DISPLAY
-    console.log(err)
+    // error is handled in the component
+    return false
   }
 } 
 
