@@ -26,7 +26,6 @@ const LoginForm = props => {
       timedMessage = setTimeout(() => {
         nullifyMessage()
       }, 4000)
-      return
     } else if (messageResult === 'success') {
       timedMessage = setTimeout(() => {
         setEmail('')
@@ -35,7 +34,7 @@ const LoginForm = props => {
         props.handleModalClose()
       }, 2000)
     }
-    return function cleanup() {
+    return () => {
       // if modal is closed before settimeout ends
       clearTimeout(timedMessage)
     }
