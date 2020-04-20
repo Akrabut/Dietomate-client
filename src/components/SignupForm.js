@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form } from 'semantic-ui-react'
 import { signupService } from '../services/user'
+import { loginService } from '../services/auth'
 import AuthMessage from './AuthMessage'
 import { login } from '../actions/user'
 import { connect } from 'react-redux'
@@ -62,19 +63,20 @@ const SignupForm = props => {
     e.preventDefault()
   
     setLoading(true)
-    const res = await signupService({
+    const signupRes = await signupService({
       name: username,
       email: email,
       password: password,
     })
-    console.log(res);
+    handleResponse(signupRes)
+    setLoading(false)
+    if (!signupRes) return
     // log the user in after he registers because having to log in after you had registered is a pain in the ass
-    res && await props.login({
-      email: res.email,
+    const loginRes = await loginService({
+      email: signupRes.email,
       password: password,
     })
-    handleResponse(res)
-    setLoading(false)
+    props.login(loginRes.user)
   }
 
   return (

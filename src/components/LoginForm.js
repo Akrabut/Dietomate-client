@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form } from 'semantic-ui-react'
 import AuthMessage from './AuthMessage'
 import { login } from '../actions/user'
+import { loginService } from '../services/auth'
 import { connect } from 'react-redux'
 
 const LoginForm = props => {
@@ -48,10 +49,9 @@ const LoginForm = props => {
     setMessageResult(result)
   }
 
-  const handleResponse = () => {
-    const user = localStorage.getItem('loggedDietomateUsername')
-    user
-      ? populateMessage('Login successful', `Hello ${user}!`, 'success')
+  const handleResponse = res => {
+    res.user.name
+      ? populateMessage('Login successful', `Hello ${res.user.name}!`, 'success')
       : populateMessage('Login failed', `Invalid email or password`, 'error')
   }
 
@@ -59,12 +59,13 @@ const LoginForm = props => {
     e.preventDefault()
 
     setLoading(true)
-    await props.login({
+    const res = await loginService({
       email: email,
       password: password,
     })
-    handleResponse()
+    handleResponse(res)
     setLoading(false)
+    props.login(res.user)
   }
 
   return (

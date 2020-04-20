@@ -1,7 +1,7 @@
 const setUserInLocalStorage = userObject => {
-  localStorage.setItem('loggedDietomateUsername', userObject.user.name)
-  localStorage.setItem('loggedDietomateUserEmail', userObject.user.email)
-  localStorage.setItem('loggedDietomateUserToken', userObject.user.token)
+  localStorage.setItem('loggedDietomateUsername', userObject.name)
+  localStorage.setItem('loggedDietomateUserEmail', userObject.email)
+  localStorage.setItem('loggedDietomateUserToken', userObject.token)
 }
 
 const removeUserFromLocalStorage = () => {

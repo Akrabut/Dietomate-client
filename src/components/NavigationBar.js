@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Sidebar, Menu, Icon } from 'semantic-ui-react'
 import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInMenu from './LoggedInMenu'
+import { login } from '../actions/user'
 import { connect } from 'react-redux'
 
 const NavigationBar = props => {
+
+  useEffect(() => {
+    // this might seem redundant right now, but will be of use after farther development
+    localStorage.getItem('loggedDietomateUsername')
+    && props.login({
+      name: localStorage.getItem('loggedDietomateUsername'),
+      email: localStorage.getItem('loggedDietomateUserEmail'),
+      token: localStorage.getItem('loggedDietomateUserToken'),
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const displayCorrectMenu = () => {
-    return props.user.name
+    return localStorage.getItem('loggedDietomateUsername')
       ? <LoggedInMenu />
       : <LoggedOutMenu />
   }
@@ -28,11 +41,17 @@ const NavigationBar = props => {
   )
 }
 
+const mapDispatchToProps = {
+  login,
+}
+
+// connecting the navigation bar allows components farther down the tree to rerender the bar
+// once a user has logged in or registered
 const mapStateToProps = state => {
   return {
     user: state.user,
   }
 }
 
-const connectedNavigationBar = connect(mapStateToProps)(NavigationBar)
+const connectedNavigationBar = connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
 export default connectedNavigationBar
