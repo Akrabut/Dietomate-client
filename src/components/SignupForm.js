@@ -119,7 +119,8 @@ const SignupForm = props => {
       />
       <Form.Button
         type='submit'
-        fluid>
+        fluid
+        disabled={username.length < 2 || email.length < 5 || password.length < 5}>
         Sign Up
       </Form.Button>
     </Form>
