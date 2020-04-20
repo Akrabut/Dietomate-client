@@ -1,12 +1,11 @@
 import { loginService } from '../services/user'
-import { setUserInLocalStorage } from '../helpers/auth'
-import { removeUserFromLocalStorage } from '../helpers/auth'
+import { setUserInLocalStorage, removeUserFromLocalStorage } from '../helpers/auth'
 
 const login = userObject => {
   return async dispatch => {
     try {
       const res = await loginService(userObject)
-      // setUserInLocalStorage(user)
+      setUserInLocalStorage(res)
       dispatch({
         type: 'LOGIN',
         data: {

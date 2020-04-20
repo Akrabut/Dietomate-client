@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 const LoginForm = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  // const [message, setMessage] = useState({ header: '', content: '', result: null })
   // this could be packaged into an object but the following useeffect will infinitely loop since {} !== {}
   const [messageHeader, setMessageHeader] = useState('')
   const [messageContent, setMessageContent] = useState('')
@@ -25,7 +24,6 @@ const LoginForm = props => {
     // if login failed display a message and keep modal open
     if (messageResult === 'error') {
       timedMessage = setTimeout(() => {
-        // setMessage({ header: '', content: '', result: null })
         nullifyMessage()
       }, 4000)
       return
@@ -37,7 +35,7 @@ const LoginForm = props => {
         props.handleModalClose()
       }, 2000)
     }
-    return () => {
+    return function cleanup() {
       // if modal is closed before settimeout ends
       clearTimeout(timedMessage)
     }
@@ -51,21 +49,10 @@ const LoginForm = props => {
   }
 
   const handleResponse = () => {
-    if (props.user.name) {
-      populateMessage('Login successful', `Hello ${props.user.name}!`, 'success')
-      // setMessage({
-      //   header: 'Login successful',
-      //   content: `Hello ${props.user.name}!`,
-      //   result: 'success'
-      // })
-    } else {
-      populateMessage('Login failed', `Invalid email or password`, 'error')
-      // setMessage({
-      //   header: 'Login failed',
-      //   content: `Invalid email or password`,
-      //   result: 'error'
-      // })
-    }
+    const user = localStorage.getItem('loggedDietomateUsername')
+    user
+      ? populateMessage('Login successful', `Hello ${user}!`, 'success')
+      : populateMessage('Login failed', `Invalid email or password`, 'error')
   }
 
   const handleSubmit = async e => {
@@ -77,7 +64,6 @@ const LoginForm = props => {
       email: email,
       password: password,
     })
-    console.log(props.user);
     handleResponse()
     setLoading(false)
   }
