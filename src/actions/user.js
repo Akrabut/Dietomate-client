@@ -1,7 +1,7 @@
-import { loginService } from '../services/user'
+import { loginService } from '../services/auth'
 import { setUserInLocalStorage, removeUserFromLocalStorage } from '../helpers/auth'
 
-const login = userObject => {
+const login = (userObject, toRegister) => {
   return async dispatch => {
     try {
       const res = await loginService(userObject)

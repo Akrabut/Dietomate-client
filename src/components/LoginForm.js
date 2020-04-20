@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import AuthMessage from './AuthMessage'
 import { login } from '../actions/user'
 import { connect } from 'react-redux'
 
 const LoginForm = props => {
+  // TODO: refactor to useForm custom hook
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   // this could be packaged into an object but the following useeffect will infinitely loop since {} !== {}
@@ -56,7 +57,6 @@ const LoginForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    if (!email || !password) return
 
     setLoading(true)
     await props.login({
@@ -76,6 +76,7 @@ const LoginForm = props => {
           value={email}
           minLength='5'
           maxLength='40'
+          required
           onChange={e => setEmail(e.target.value)} />
       </Form.Field>
       <Form.Field>
@@ -85,6 +86,7 @@ const LoginForm = props => {
           value={password}
           minLength='5'
           maxLength='15'
+          required
           onChange={e => setPassword(e.target.value)} />
       </Form.Field>
       <AuthMessage
@@ -92,11 +94,11 @@ const LoginForm = props => {
         header={messageHeader}
         content={messageContent}
       />
-      <Button
+      <Form.Button
         type='submit'
         fluid>
         Log In
-      </Button>
+      </Form.Button>
     </Form>
   )
 }
