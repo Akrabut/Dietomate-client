@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Sidebar, Menu, Icon } from 'semantic-ui-react'
 import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInMenu from './LoggedInMenu'
+import { connect } from 'react-redux'
 
-const NavigationBar = () => {
-  const [loggedUser, setLoggedUser] = useState('')
-
+const NavigationBar = props => {
   const displayCorrectMenu = () => {
-    return window.localStorage.getItem('loggedDietomateUsername')
+    return props.user.name
       ? <LoggedInMenu />
       : <LoggedOutMenu />
   }
@@ -29,4 +28,11 @@ const NavigationBar = () => {
   )
 }
 
-export default NavigationBar
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  }
+}
+
+const connectedNavigationBar = connect(mapStateToProps)(NavigationBar)
+export default connectedNavigationBar
