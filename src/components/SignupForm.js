@@ -61,7 +61,7 @@ const SignupForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-  
+
     setLoading(true)
     const signupRes = await signupService({
       name: username,
@@ -71,12 +71,14 @@ const SignupForm = props => {
     handleResponse(signupRes)
     setLoading(false)
     if (!signupRes) return
-    // log the user in after he registers because having to log in after you had registered is a pain in the ass
-    const loginRes = await loginService({
-      email: signupRes.email,
-      password: password,
-    })
-    props.login(loginRes.user)
+    try {
+      // log the user in after he registers because having to log in after you had registered is a pain in the ass
+      const loginRes = await loginService({
+        email: signupRes.email,
+        password: password,
+      })
+      props.login(loginRes.user)
+    } catch (err) { return }
   }
 
   return (
