@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // TODO: TEMP WEBHOOK
-const ENDPOINT = 'https://webhook.site/1809822f-4c24-45c0-8639-274792004611'
+const ENDPOINT = 'https://webhook.site/8aad391d-4974-4804-97bd-de2a1abafc14'
 
 const sendDietForm = async (dietObject) => {
   try {

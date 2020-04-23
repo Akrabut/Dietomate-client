@@ -1,6 +1,8 @@
-const apple = {
+const food1 = {
+  name: 'Apple',
   calories_per_100g: 52,
   serving_size: 182,
+  selected_amount: 182,
   macronutrients_per_100g: {
     carbohydrate: 11.4,
     protein: 0.3,
@@ -109,3 +111,5 @@ const apple = {
   },
   category: 'fruit'
 }
+
+export default food1
