@@ -1,139 +1,138 @@
 // amount defined by RDA
-export const vitamins = {
-  vitamins: {
-    vitamin_a: {
-      amount: 3000,
-      max: null,
-      unit: 'IU'
-    },
-    vitamin_b1: {
-      amount: 1.2,
-      max: null,
-      unit: 'mg'
-    },
-    vitamin_b2: {
-      amount: 1.3,
-      max: null,
-      unit: 'mg'
-    },
-    vitamin_b3: {
-      amount: 16,
-      max: 35,
-      unit: 'mg'
-    },
-    vitamin_b5: {
-      amount: 5,
-      max: null,
-      unit: 'mg'
-    },
-    vitamin_b6: {
-      amount: 1.3,
-      max: 100,
-      unit: 'mg'
-    },
-    vitamin_b7: {
-      amount: 30,
-      max: null,
-      unit: 'mcg'
-    },
-    vitamin_b9: {
-      amount: 400,
-      max: 1000,
-      unit: 'mcg'
-    },
-    vitamin_b12: {
-      amount: 2.4,
-      max: null,
-      unit: 'mcg'
-    },
-    vitamin_c: {
-      amount: 75,
-      max: 2000,
-      unit: 'mg'
-    },
-    vitamin_d: {
-      amount: 600,
-      max: 4000,
-      unit: 'IU'
-    },
-    vitamin_e: {
-      amount: 0.2,
-      max: 1000,
-      unit: 'mg'
-    },
-    vitamin_k: {
-      amount: 2.2,
-      max: 2000,
-      unit: 'mcg'
-    },
+const vitamins = {
+  vitamin_a: {
+    amount: 3000,
+    max: null,
+    unit: 'IU'
   },
-  minerals: {
-    calcium: {
-      amount: 1000,
-      max: 2500,
-      unit: 'mg'
-    },
-    iron: {
-      amount: 8,
-      max: 45,
-      unit: 'mg'
-    },
-    magnesium: {
-      amount: 400,
-      max: null,
-      unit: 'mg'
-    },
-    phosphorus: {
-      amount: 700,
-      max: 4000,
-      unit: 'mg'
-    },
-    potassium: {
-      amount: 4700,
-      max: null,
-      unit: 'mg'
-    },
-    sodium: {
-      amount: 1500,
-      max: 2300,
-      unit: 'mg'
-    },
-    zinc: {
-      amount: 1,
-      max: 40,
-      unit: 'mg'
-    },
-    copper: {
-      amount: 0.9,
-      max: 10,
-      unit: 'mg'
-    },
-    manganese: {
-      amount: 2.3,
-      max: 11,
-      unit: 'mg'
-    },
-    selenium: {
-      amount: 55,
-      max: 400,
-      unit: 'mcg'
-    },
-    fluoride: {
-      amount: 3.5,
-      unit: 'mcg'
-    },
-    iodine: {
-      amount: 150,
-      max: null,
-      unit: 'mcg'
-    },
-    chromium: {
-      amount: 120,
-      max: 200,
-      unit: 'mcg'
-    }
+  vitamin_b1: {
+    amount: 1.2,
+    max: null,
+    unit: 'mg'
+  },
+  vitamin_b2: {
+    amount: 1.3,
+    max: null,
+    unit: 'mg'
+  },
+  vitamin_b3: {
+    amount: 16,
+    max: 35,
+    unit: 'mg'
+  },
+  vitamin_b5: {
+    amount: 5,
+    max: null,
+    unit: 'mg'
+  },
+  vitamin_b6: {
+    amount: 1.3,
+    max: 100,
+    unit: 'mg'
+  },
+  vitamin_b7: {
+    amount: 30,
+    max: null,
+    unit: 'mcg'
+  },
+  vitamin_b9: {
+    amount: 400,
+    max: 1000,
+    unit: 'mcg'
+  },
+  vitamin_b12: {
+    amount: 2.4,
+    max: null,
+    unit: 'mcg'
+  },
+  vitamin_c: {
+    amount: 90,
+    max: 2000,
+    unit: 'mg'
+  },
+  vitamin_d: {
+    amount: 600,
+    max: 4000,
+    unit: 'IU'
+  },
+  vitamin_e: {
+    amount: 15,
+    max: 1000,
+    unit: 'mg'
+  },
+  vitamin_k: {
+    amount: 120,
+    max: 2000,
+    unit: 'mcg'
+  },
+}
+const minerals = {
+  calcium: {
+    amount: 1000,
+    max: 2500,
+    unit: 'mg'
+  },
+  iron: {
+    amount: 8,
+    max: 45,
+    unit: 'mg'
+  },
+  magnesium: {
+    amount: 400,
+    max: null,
+    unit: 'mg'
+  },
+  phosphorus: {
+    amount: 700,
+    max: 4000,
+    unit: 'mg'
+  },
+  potassium: {
+    amount: 4700,
+    max: null,
+    unit: 'mg'
+  },
+  sodium: {
+    amount: 1500,
+    max: 2300,
+    unit: 'mg'
+  },
+  zinc: {
+    amount: 1,
+    max: 40,
+    unit: 'mg'
+  },
+  copper: {
+    amount: 0.9,
+    max: 10,
+    unit: 'mg'
+  },
+  manganese: {
+    amount: 2.3,
+    max: 11,
+    unit: 'mg'
+  },
+  selenium: {
+    amount: 55,
+    max: 400,
+    unit: 'mcg'
+  },
+  fluoride: {
+    amount: 3.5,
+    unit: 'mcg'
+  },
+  iodine: {
+    amount: 150,
+    max: null,
+    unit: 'mcg'
+  },
+  chromium: {
+    amount: 120,
+    max: 200,
+    unit: 'mcg'
   }
 }
+
 
 const calcBMR = (weight, height, age, sex) => {
   // multiply by 1.2 as we assume sedantery lifestyle
@@ -162,6 +161,7 @@ export const calcRequirements = (weight, height, age, sex, target) => {
   return {
     calories: calories(bmr, target),
     vitamins: vitamins,
+    minerals: minerals,
     macronutrients: macronutrients(bmr, weight, sex),
   }
 }
@@ -280,36 +280,36 @@ const generateSumObject = () => {
 
 export const sumNutrients = foodArray => (
   foodArray.reduce((sum, food) => {
-    sum['calories'] += food['calories_per_100g'] * (food['selected_amount'] / 100)
-    sum['macronutrients']['protein'] += food['macronutrients_per_100g']['protein'] * (food['selected_amount'] / 100)
-    sum['macronutrients']['carbohydrate'] += food['macronutrients_per_100g']['carbohydrate'] * (food['selected_amount'] / 100)
-    sum['macronutrients']['fat'] += food['macronutrients_per_100g']['fat'] * (food['selected_amount'] / 100)
-    sum['macronutrients']['fiber'] += food['macronutrients_per_100g']['fiber'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_a']['amount'] += food['vitamin_per_100g']['vitamin_a']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b1']['amount'] += food['vitamin_per_100g']['vitamin_b1']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b2']['amount'] += food['vitamin_per_100g']['vitamin_b2']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b3']['amount'] += food['vitamin_per_100g']['vitamin_b3']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b5']['amount'] += food['vitamin_per_100g']['vitamin_b5']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b6']['amount'] += food['vitamin_per_100g']['vitamin_b6']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b7']['amount'] += food['vitamin_per_100g']['vitamin_b7']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b9']['amount'] += food['vitamin_per_100g']['vitamin_b9']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_b12']['amount'] += food['vitamin_per_100g']['vitamin_b12']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_a']['amount'] += food['vitamin_per_100g']['vitamin_a']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_c']['amount'] += food['vitamin_per_100g']['vitamin_c']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_d']['amount'] += food['vitamin_per_100g']['vitamin_d']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_e']['amount'] += food['vitamin_per_100g']['vitamin_e']['amount'] * (food['selected_amount'] / 100)
-    sum['vitamins']['vitamin_k']['amount'] += food['vitamin_per_100g']['vitamin_k']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['calcium']['amount'] += food['minerals_per_100g']['calcium']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['iron']['amount'] += food['minerals_per_100g']['iron']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['magnesium']['amount'] += food['minerals_per_100g']['magnesium']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['phosphorus']['amount'] += food['minerals_per_100g']['phosphorus']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['potassium']['amount'] += food['minerals_per_100g']['potassium']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['sodium']['amount'] += food['minerals_per_100g']['sodium']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['zinc']['amount'] += food['minerals_per_100g']['zinc']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['copper']['amount'] += food['minerals_per_100g']['copper']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['manganese']['amount'] += food['minerals_per_100g']['manganese']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['selenium']['amount'] += food['minerals_per_100g']['selenium']['amount'] * (food['selected_amount'] / 100)
-    sum['minerals']['fluoride']['amount'] += food['minerals_per_100g']['fluoride']['amount'] * (food['selected_amount'] / 100)
+    sum['calories'] += food['calories']
+    sum['macronutrients']['protein'] += food['macronutrients']['protein']
+    sum['macronutrients']['carbohydrate'] += food['macronutrients']['carbohydrate']
+    sum['macronutrients']['fat'] += food['macronutrients']['fat']
+    sum['macronutrients']['fiber'] += food['macronutrients']['fiber']
+    sum['vitamins']['vitamin_a']['amount'] += food['vitamins']['vitamin_a']['amount']
+    sum['vitamins']['vitamin_b1']['amount'] += food['vitamins']['vitamin_b1']['amount']
+    sum['vitamins']['vitamin_b2']['amount'] += food['vitamins']['vitamin_b2']['amount']
+    sum['vitamins']['vitamin_b3']['amount'] += food['vitamins']['vitamin_b3']['amount']
+    sum['vitamins']['vitamin_b5']['amount'] += food['vitamins']['vitamin_b5']['amount']
+    sum['vitamins']['vitamin_b6']['amount'] += food['vitamins']['vitamin_b6']['amount']
+    sum['vitamins']['vitamin_b7']['amount'] += food['vitamins']['vitamin_b7']['amount']
+    sum['vitamins']['vitamin_b9']['amount'] += food['vitamins']['vitamin_b9']['amount']
+    sum['vitamins']['vitamin_b12']['amount'] += food['vitamins']['vitamin_b12']['amount']
+    sum['vitamins']['vitamin_a']['amount'] += food['vitamins']['vitamin_a']['amount']
+    sum['vitamins']['vitamin_c']['amount'] += food['vitamins']['vitamin_c']['amount']
+    sum['vitamins']['vitamin_d']['amount'] += food['vitamins']['vitamin_d']['amount']
+    sum['vitamins']['vitamin_e']['amount'] += food['vitamins']['vitamin_e']['amount']
+    sum['vitamins']['vitamin_k']['amount'] += food['vitamins']['vitamin_k']['amount']
+    sum['minerals']['calcium']['amount'] += food['minerals']['calcium']['amount']
+    sum['minerals']['iron']['amount'] += food['minerals']['iron']['amount']
+    sum['minerals']['magnesium']['amount'] += food['minerals']['magnesium']['amount']
+    sum['minerals']['phosphorus']['amount'] += food['minerals']['phosphorus']['amount']
+    sum['minerals']['potassium']['amount'] += food['minerals']['potassium']['amount']
+    sum['minerals']['sodium']['amount'] += food['minerals']['sodium']['amount']
+    sum['minerals']['zinc']['amount'] += food['minerals']['zinc']['amount']
+    sum['minerals']['copper']['amount'] += food['minerals']['copper']['amount']
+    sum['minerals']['manganese']['amount'] += food['minerals']['manganese']['amount']
+    sum['minerals']['selenium']['amount'] += food['minerals']['selenium']['amount']
+    sum['minerals']['fluoride']['amount'] += food['minerals']['fluoride']['amount']
     return sum
   }, generateSumObject())
 )

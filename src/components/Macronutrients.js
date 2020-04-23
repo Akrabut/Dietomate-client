@@ -1,9 +1,9 @@
 import React from 'react'
-import { List, Header, Progress } from 'semantic-ui-react'
+import { List, Header, Progress, Segment } from 'semantic-ui-react'
 
 const Macronutrients = ({reqs, sum}) => {
   return (
-  <div>
+    <Segment compact raised style={{ width: '20%' }}>
     <Header>Macronutrients</Header>
     <List>
       <List.Item>
@@ -26,7 +26,9 @@ const Macronutrients = ({reqs, sum}) => {
         </List.Item>
         <List.Item>
           Carbohydrates
-          <Progress percent={100} disabled >no target</Progress>
+          <Progress percent={100} disabled >
+            {`${Math.round(sum.macronutrients.carbohydrate)} (no target)`}
+          </Progress>
         </List.Item>
         <List.Item>
           Fiber
@@ -35,7 +37,7 @@ const Macronutrients = ({reqs, sum}) => {
           </Progress>
         </List.Item>
     </List>
-  </div>
+  </Segment>
   )
 }
 

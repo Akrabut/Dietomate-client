@@ -1,15 +1,15 @@
+// ALL SPECIFIED VALUES ARE PER 100 GRAMS OF FOOD
 const food1 = {
   name: 'Apple',
-  calories_per_100g: 52,
+  calories: 52,
   serving_size: 182,
-  selected_amount: 182,
-  macronutrients_per_100g: {
+  macronutrients: {
     carbohydrate: 11.4,
     protein: 0.3,
     fat: 0.2,
     fiber: 2.4
   },
-  vitamin_per_100g: {
+  vitamins: {
     vitamin_a: {
       amount: 54,
       unit: 'IU'
@@ -63,7 +63,7 @@ const food1 = {
       unit: 'mcg'
     },
   },
-  minerals_per_100g: {
+  minerals: {
     calcium: {
       amount: 6,
       unit: 'mg'
@@ -112,4 +112,29 @@ const food1 = {
   category: 'fruit'
 }
 
-export default food1
+const deepCopy = (inObject) => {
+  let outObject, value, key
+  if (typeof inObject !== "object" || inObject === null) {
+    return inObject // Return the value if inObject is not an object
+  }
+  // Create an array or object to hold the values
+  outObject = Array.isArray(inObject) ? [] : {}
+  for (key in inObject) {
+    value = inObject[key]
+    // Recursively (deep) copy for nested objects, including arrays
+    outObject[key] = deepCopy(value)
+  }
+  return outObject
+}
+
+const foodGenerator = (food, amount) => {
+  const foodCopy = deepCopy(food)
+  foodCopy['calories'] = foodCopy['calories'] * amount / 100
+  Object.keys(food['macronutrients']).forEach(macro => foodCopy['macronutrients'][macro] *= amount / 100)
+  Object.keys(food['vitamins']).forEach(vitamin => foodCopy['vitamins'][vitamin]['amount'] *= amount / 100)
+  Object.keys(food['minerals']).forEach(vitamin => foodCopy['minerals'][vitamin]['amount'] *= amount / 100)
+  foodCopy['amount'] = amount
+  return foodCopy
+}
+
+export { food1, foodGenerator }
