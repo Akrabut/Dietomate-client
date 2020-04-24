@@ -19,7 +19,7 @@ const Foods = ({ arr }) => {
             return (
               <Table.Row key={`row ${i}`}>
                 <Table.Cell textAlign='center' key={`food name ${i}`}>{food.name}</Table.Cell>
-                <Table.Cell textAlign='center' key={`food amount ${i}`}>{food['amount']}</Table.Cell>
+                <Table.Cell textAlign='center' key={`food amount ${i}`}>{`${food['amount']}g`}</Table.Cell>
                 <Table.Cell textAlign='center' key={`calorie amount ${i}`}>{Math.round(food['calories'])}</Table.Cell>
               </Table.Row>
             )
