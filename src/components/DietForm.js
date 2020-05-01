@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Segment, Grid, Form, Menu, Button } from 'semantic-ui-react'
-import { sendDietForm } from '../services/diet_form'
+import { calcBMR, calories } from '../helpers/dietForm'
+import { connect } from 'react-redux'
+import { set, empty } from '../actions/planResponse'
 
-const DietForm = () => {
-  const [formSent, setformSent] = useState(false)
-
+const DietForm = props => {
   const [activeTarget, setactiveTarget] = useState('lose-weight')
   // hahaha he said sex
   const [activeSex, setactiveSex] = useState('male')
@@ -14,7 +14,8 @@ const DietForm = () => {
   const [activeHeight, setactiveHeight] = useState('')
 
   useEffect(() => {
-    setformSent(false)
+    props.empty()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const validateAge = (event) => {
@@ -32,21 +33,22 @@ const DietForm = () => {
     setactiveHeight(event.target.value)
   }
 
+  const determineCalories = () => {
+    const bmr = calcBMR(activeWeight, activeHeight, activeAge, activeSex)
+    return calories(bmr, activeTarget)
+  }
+
   const handleSubmit = async () => {
-    await sendDietForm({
-      diet: {
-        target: activeTarget,
+    await props.set({
+      requirements: {
+        calories: determineCalories(),
         sex: activeSex,
         age: activeAge,
         weight: activeWeight,
         height: activeHeight,
       }
     })
-    setformSent(true)
   }
-
-  // TODO: DISPLAY NUTRITION PLAN
-  if (formSent) return 'GENERATED MENU PLACEHOLDER'
 
   return (
     <Segment>
@@ -142,4 +144,15 @@ const DietForm = () => {
   )
 }
 
-export default DietForm
+const mapDispatchToProps = {
+  set, empty
+}
+
+const mapStateToProps = state => {
+  return {
+    planResponse: state.planResponse,
+  }
+}
+
+const connectedDietForm = connect(mapStateToProps, mapDispatchToProps)(DietForm)
+export default connectedDietForm

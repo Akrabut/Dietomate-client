@@ -1,4 +1,3 @@
-// import { loginService } from '../services/auth'
 import { setUserInLocalStorage, removeUserFromLocalStorage } from '../helpers/auth'
 
 const login = userObject => {

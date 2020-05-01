@@ -1,3 +1,5 @@
+import { calcBMR, calories } from './dietForm'
+
 // amount defined by RDA
 const vitamins = {
   vitamin_a: {
@@ -133,13 +135,6 @@ const minerals = {
   }
 }
 
-
-const calcBMR = (weight, height, age, sex) => {
-  // multiply by 1.2 as we assume sedantery lifestyle
-  let baseBMR = 10 * weight + 6.25 * height - 5 * age * 1.2
-  return sex === 'male' ? baseBMR + 5 : baseBMR - 161
-}
-
 const macronutrients = (bmr, weight, sex) => {
   const neededFat = bmr * 0.3 / 9
   const neededFiber = sex === 'male' ? 38 : 25
@@ -148,12 +143,6 @@ const macronutrients = (bmr, weight, sex) => {
     fat: neededFat,
     fiber: neededFiber
   }
-}
-
-const calories = (bmr, target) => {
-  if (target === 'lose-weight') return bmr - 400
-  if (target === 'gain-muscle') return bmr + 500
-  return bmr
 }
 
 export const calcRequirements = (weight, height, age, sex, target) => {
