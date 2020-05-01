@@ -11,17 +11,17 @@ const Home = props => {
     props.planResponse.reqs
       ? (
         <Container textAlign='center'>
-          <HomeTitle />
-          <DietForm />
+          <NutritionPlan />
         </Container>
       )
       : (
         <Container textAlign='center'>
-          <NutritionPlan />
+          <HomeTitle />
+          <DietForm />
         </Container>
       )
   )
-        console.log(props.planResponse);
+  console.log(props.planResponse.reqs);
   return (
     <main>
       <NavigationBar />

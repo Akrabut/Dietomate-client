@@ -100,7 +100,7 @@ const minerals = {
     unit: 'mg'
   },
   zinc: {
-    amount: 1,
+    amount: 11,
     max: 40,
     unit: 'mg'
   },
@@ -189,10 +189,6 @@ const generateSumObject = () => {
         amount: 0,
         unit: 'mg'
       },
-      vitamin_b7: {
-        amount: 0,
-        unit: 'mg'
-      },
       vitamin_b9: {
         amount: 0,
         unit: 'mcg'
@@ -267,38 +263,12 @@ const generateSumObject = () => {
   }
 }
 
-export const sumNutrients = foodArray => (
-  foodArray.reduce((sum, food) => {
+export const sumNutrients = planObj => (
+  planObj.plans[0].foods.reduce((sum, food) => {
     sum['calories'] += food['calories']
-    sum['macronutrients']['protein'] += food['macronutrients']['protein']
-    sum['macronutrients']['carbohydrate'] += food['macronutrients']['carbohydrate']
-    sum['macronutrients']['fat'] += food['macronutrients']['fat']
-    sum['macronutrients']['fiber'] += food['macronutrients']['fiber']
-    sum['vitamins']['vitamin_a']['amount'] += food['vitamins']['vitamin_a']['amount']
-    sum['vitamins']['vitamin_b1']['amount'] += food['vitamins']['vitamin_b1']['amount']
-    sum['vitamins']['vitamin_b2']['amount'] += food['vitamins']['vitamin_b2']['amount']
-    sum['vitamins']['vitamin_b3']['amount'] += food['vitamins']['vitamin_b3']['amount']
-    sum['vitamins']['vitamin_b5']['amount'] += food['vitamins']['vitamin_b5']['amount']
-    sum['vitamins']['vitamin_b6']['amount'] += food['vitamins']['vitamin_b6']['amount']
-    sum['vitamins']['vitamin_b7']['amount'] += food['vitamins']['vitamin_b7']['amount']
-    sum['vitamins']['vitamin_b9']['amount'] += food['vitamins']['vitamin_b9']['amount']
-    sum['vitamins']['vitamin_b12']['amount'] += food['vitamins']['vitamin_b12']['amount']
-    sum['vitamins']['vitamin_a']['amount'] += food['vitamins']['vitamin_a']['amount']
-    sum['vitamins']['vitamin_c']['amount'] += food['vitamins']['vitamin_c']['amount']
-    sum['vitamins']['vitamin_d']['amount'] += food['vitamins']['vitamin_d']['amount']
-    sum['vitamins']['vitamin_e']['amount'] += food['vitamins']['vitamin_e']['amount']
-    sum['vitamins']['vitamin_k']['amount'] += food['vitamins']['vitamin_k']['amount']
-    sum['minerals']['calcium']['amount'] += food['minerals']['calcium']['amount']
-    sum['minerals']['iron']['amount'] += food['minerals']['iron']['amount']
-    sum['minerals']['magnesium']['amount'] += food['minerals']['magnesium']['amount']
-    sum['minerals']['phosphorus']['amount'] += food['minerals']['phosphorus']['amount']
-    sum['minerals']['potassium']['amount'] += food['minerals']['potassium']['amount']
-    sum['minerals']['sodium']['amount'] += food['minerals']['sodium']['amount']
-    sum['minerals']['zinc']['amount'] += food['minerals']['zinc']['amount']
-    sum['minerals']['copper']['amount'] += food['minerals']['copper']['amount']
-    sum['minerals']['manganese']['amount'] += food['minerals']['manganese']['amount']
-    sum['minerals']['selenium']['amount'] += food['minerals']['selenium']['amount']
-    sum['minerals']['fluoride']['amount'] += food['minerals']['fluoride']['amount']
+    Object.keys(sum['macronutrients']).forEach(key => sum['macronutrients'][key] += food['macronutrients'][key])
+    Object.keys(sum['vitamins']).forEach(key => sum['vitamins'][key]['amount'] += food['vitamins'][key]['amount'])
+    Object.keys(sum['minerals']).forEach(key => sum['minerals'][key]['amount'] += food['minerals'][key]['amount'])
     return sum
   }, generateSumObject())
 )

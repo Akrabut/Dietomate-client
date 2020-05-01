@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { set, empty } from '../actions/planResponse'
 
 const DietForm = props => {
+  const [loading, setLoading] = useState(false)
   const [activeTarget, setactiveTarget] = useState('lose-weight')
   // hahaha he said sex
   const [activeSex, setactiveSex] = useState('male')
@@ -39,20 +40,23 @@ const DietForm = props => {
   }
 
   const handleSubmit = async () => {
+    setLoading(true)
     await props.set({
       requirements: {
         calories: determineCalories(),
+        target: activeTarget,
         sex: activeSex,
         age: activeAge,
         weight: activeWeight,
         height: activeHeight,
       }
     })
+    setLoading(false)
   }
 
   return (
     <Segment>
-      <Form as={Grid} columns={2} centered padded divided='vertically'>
+      <Form as={Grid} columns={2} centered padded divided='vertically' loading={loading}>
         <Grid.Row>
           <Grid.Column textAlign='center' verticalAlign='middle'>
             <label>I want to</label>
@@ -148,11 +152,5 @@ const mapDispatchToProps = {
   set, empty
 }
 
-const mapStateToProps = state => {
-  return {
-    planResponse: state.planResponse,
-  }
-}
-
-const connectedDietForm = connect(mapStateToProps, mapDispatchToProps)(DietForm)
+const connectedDietForm = connect(null, mapDispatchToProps)(DietForm)
 export default connectedDietForm

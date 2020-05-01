@@ -1,19 +1,23 @@
 import React from 'react'
 import Foods from './Foods'
 import Nutrients from './Nutrients'
-import { food1 as food, foodGenerator } from '../helpers/food'
+import { connect } from 'react-redux'
 
-const NutritionPlan = () => {
-  const arr = new Array(30)
-  for (let i = 0; i < 30; i++)
-    arr[i] = foodGenerator(food, food['serving_size'])
-  
+const NutritionPlan = props => {
+  console.log(props.planResponse);
   return (
-    <div>
-      <Foods arr={arr}/>
-      <Nutrients arr={arr}/>
+    <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
+      <Foods planObject={props.planResponse.plans[0]}/>
+      <Nutrients planObject={props.planResponse}/>
     </div>
   )
 }
 
-export default NutritionPlan
+const mapStateToProps = state => {
+  return {
+    planResponse: state.planResponse,
+  }
+}
+
+const connectedNutritionPlan = connect(mapStateToProps)(NutritionPlan)
+export default connectedNutritionPlan

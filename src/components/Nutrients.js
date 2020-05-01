@@ -4,9 +4,10 @@ import Macronutrients from './Macronutrients'
 import Vitamins from './Vitamins'
 import Minerals from './Minerals'
 
-const Nutrients = ({ arr }) => {
-  const reqs = calcRequirements(88, 181, 28, 'male', 'gain-muscle')
-  const sum = sumNutrients(arr)
+const Nutrients = ({ planObject }) => {
+  const properties = planObject.reqs.requirements
+  const reqs = calcRequirements(properties.weight, properties.height, properties.age, properties.sex, properties.target)
+  const sum = sumNutrients(planObject)
 
   return (
     <div style={{display: 'flex'}}>

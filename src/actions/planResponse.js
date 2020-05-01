@@ -1,9 +1,12 @@
 import { sendDietForm } from '../services/diet_form'
+import { normalizeFoodProperties } from '../helpers/dietForm'
 
 const set = reqs => {
   return async dispatch => {
     try {
-      const res = await sendDietForm(reqs)
+      let res = await sendDietForm(reqs)
+      normalizeFoodProperties(res)
+      console.log(res);
       dispatch({
         type: 'SET',
         data: {

@@ -10,6 +10,21 @@ const calories = (bmr, target) => {
   return bmr
 }
 
+const normalizeFoodProperties = res => {
+  return res.map(plan => {
+    plan.foods.map((food, i) => {
+      food['quantity'] = plan['quantities'][i]
+      food['calories'] = food['calories'] * food['quantity'] / 100
+      Object.keys(food['macronutrients']).forEach(key => food['macronutrients']['key'] *= food['quantity'] / 100)
+      Object.keys(food['vitamins']).forEach(key => food['vitamins'][key]['amount'] *= food['quantity'] / 100)
+      Object.keys(food['minerals']).forEach(key => food['minerals'][key]['amount'] *= food['quantity'] / 100)
+      return food
+    })
+    delete plan['quantities']
+    return plan
+  })
+}
+
 export {
-  calcBMR, calories
+  calcBMR, calories, normalizeFoodProperties
 }
