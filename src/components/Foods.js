@@ -9,8 +9,8 @@ const Foods = ({ planObject }) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell textAlign='center'>Food</Table.HeaderCell>
-            <Table.HeaderCell>Amount</Table.HeaderCell>
-            <Table.HeaderCell>Calories</Table.HeaderCell>
+            <Table.HeaderCell textAlign='center'>Amount</Table.HeaderCell>
+            <Table.HeaderCell textAlign='center'>Calories</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -19,7 +19,7 @@ const Foods = ({ planObject }) => {
             return (
               <Table.Row key={`row ${i}`}>
                 <Table.Cell textAlign='center' key={`food name ${i}`}>{food.name}</Table.Cell>
-                <Table.Cell textAlign='center' key={`food amount ${i}`}>{`${food['quantity']}g`}</Table.Cell>
+                <Table.Cell textAlign='center' key={`food amount ${i}`}>{`${food['quantity']}g (${Math.round(food['quantity'] / food['serving_size'])} servings)`}</Table.Cell>
                 <Table.Cell textAlign='center' key={`calorie amount ${i}`}>{Math.round(food['calories'])}</Table.Cell>
               </Table.Row>
             )

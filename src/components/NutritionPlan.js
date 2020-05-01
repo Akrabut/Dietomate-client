@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Foods from './Foods'
 import Nutrients from './Nutrients'
 import { connect } from 'react-redux'
 
 const NutritionPlan = props => {
-  console.log(props.planResponse);
+  const [currentPlan, setCurrentPlan] = useState(0)
+
   return (
     <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
-      <Foods planObject={props.planResponse.plans[0]}/>
-      <Nutrients planObject={props.planResponse}/>
+      <Foods planObject={props.planResponse.plans[currentPlan]}/>
+      <Nutrients planObject={props.planResponse.plans[currentPlan]} constraints={props.planResponse.reqs} />
     </div>
   )
 }

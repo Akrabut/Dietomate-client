@@ -4,8 +4,8 @@ import Macronutrients from './Macronutrients'
 import Vitamins from './Vitamins'
 import Minerals from './Minerals'
 
-const Nutrients = ({ planObject }) => {
-  const properties = planObject.reqs.requirements
+const Nutrients = ({ planObject, constraints }) => {
+  const properties = constraints.requirements
   const reqs = calcRequirements(properties.weight, properties.height, properties.age, properties.sex, properties.target)
   const sum = sumNutrients(planObject)
 

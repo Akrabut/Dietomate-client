@@ -264,7 +264,7 @@ const generateSumObject = () => {
 }
 
 export const sumNutrients = planObj => (
-  planObj.plans[0].foods.reduce((sum, food) => {
+  planObj.foods.reduce((sum, food) => {
     sum['calories'] += food['calories']
     Object.keys(sum['macronutrients']).forEach(key => sum['macronutrients'][key] += food['macronutrients'][key])
     Object.keys(sum['vitamins']).forEach(key => sum['vitamins'][key]['amount'] += food['vitamins'][key]['amount'])
