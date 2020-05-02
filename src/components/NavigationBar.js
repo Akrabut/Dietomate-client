@@ -4,6 +4,7 @@ import LoggedOutMenu from './LoggedOutMenu'
 import LoggedInMenu from './LoggedInMenu'
 import { login } from '../actions/user'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const NavigationBar = props => {
 
@@ -32,7 +33,7 @@ const NavigationBar = props => {
       stackable
       visible
       direction='top'>
-      <Menu.Item header>
+      <Menu.Item header as={Link} to='/'>
         <Icon name='lemon outline' />
         <p>Dietomate - Automate Your Diet!</p>
       </Menu.Item>

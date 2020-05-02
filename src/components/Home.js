@@ -5,28 +5,21 @@ import DietForm from './DietForm'
 import NutritionPlan from './NutritionPlan'
 import NavigationBar from './NavigationBar'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Home = props => {
-  const displayCorrectComp = () => (
-    props.planResponse.reqs
-      ? (
-        <Container textAlign='center'>
-          <NutritionPlan />
-        </Container>
-      )
-      : (
-        <Container textAlign='center'>
-          <HomeTitle />
-          <DietForm />
-        </Container>
-      )
-  )
-  console.log(props.planResponse.reqs);
   return (
-    <main>
-      <NavigationBar />
-      {displayCorrectComp()}
-    </main>
+    < Router >
+    <NavigationBar />
+      <Container textAlign='center' style={{ marginTop: '5vw' }}>
+      <Switch>
+        <Route exact path='/'><HomeTitle /></Route>
+        <Route exact path='/diet-form'><DietForm /></Route>
+        <Route exact path='/nutrition-plan'><NutritionPlan /></Route>
+        <Route exact path='/my-plans'></Route>
+      </Switch>
+    </Container>
+  </Router >
   )
 }
 

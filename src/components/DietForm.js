@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Segment, Grid, Form, Menu, Button } from 'semantic-ui-react'
+import { Segment, Grid, Form, Menu, Button, Header } from 'semantic-ui-react'
 import { calcBMR, calories } from '../helpers/dietForm'
 import { connect } from 'react-redux'
 import { set, empty } from '../actions/planResponse'
@@ -56,6 +56,7 @@ const DietForm = props => {
 
   return (
     <Segment>
+    <Header content='Get Your Nutrition Plan!' style={{marginBottom: '2%'}} />
       <Form as={Grid} columns={2} centered padded divided='vertically' loading={loading}>
         <Grid.Row>
           <Grid.Column textAlign='center' verticalAlign='middle'>
