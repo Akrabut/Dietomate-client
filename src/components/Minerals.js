@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Header, Progress, Segment } from 'semantic-ui-react'
 
-const Minerals = ({ reqs, sum }) => {
+const Minerals = ({ reqs, sum, amountColor }) => {
   const displayProperFixedValue = val => {
     const fixedVal = Number.parseFloat(val).toFixed(1)
     const roundedVal = Math.round(val)
@@ -17,7 +17,9 @@ const Minerals = ({ reqs, sum }) => {
           return (
             <List.Item key={mineral}>
               {mineral[0].toUpperCase().concat(mineral.slice(1, mineral.length))}
-              <Progress percent={Math.round(sum['minerals'][mineral]['amount'] / reqs['minerals'][mineral]['amount'] * 100)} progress>
+              <Progress percent={Math.round(sum['minerals'][mineral]['amount'] / reqs['minerals'][mineral]['amount'] * 100)}
+                color={amountColor(reqs['minerals'][mineral]['amount'], sum['minerals'][mineral]['amount'])}
+                progress>
                 {`${displayProperFixedValue(sum['minerals'][mineral]['amount'])}/${displayProperFixedValue(reqs['minerals'][mineral]['amount'])} ${reqs['minerals'][mineral]['unit']}`}
               </Progress>
             </List.Item>

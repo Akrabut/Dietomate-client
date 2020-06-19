@@ -9,27 +9,35 @@ const LoggedInMenu = props => {
     <Menu.Menu
       position='right'>
       <Menu.Item
+      as={Link}
+      to={'my-plans'}
         name='My Plans'
         content='My Plans'
-        onClick={() => console.log('My Plans')}>
+        onClick={() => console.log('My Plans')}
+        style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
         as={Link}
         to='diet-form'
         name='New Plan'
-        content='New Plan'>
+        content='New Plan'
+        style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
+      as={Link}
+      to='learn'
         name='Learn'
         content='Learn'
-        onClick={() => console.log('Learn')}>
+        onClick={() => console.log('Learn')}
+        style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
         as={Link}
         to='/'
         name='Log Out'
         content='Log Out'
-        onClick={() => props.logout()}>
+        onClick={() => props.logout()}
+        style={props.itemColor}>
       </Menu.Item>
     </Menu.Menu>
   )

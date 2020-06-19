@@ -11,18 +11,22 @@ const NavigationBar = props => {
   useEffect(() => {
     // this might seem redundant right now, but will be of use after farther development
     localStorage.getItem('loggedDietomateUsername')
-    && props.login({
-      name: localStorage.getItem('loggedDietomateUsername'),
-      email: localStorage.getItem('loggedDietomateUserEmail'),
-      token: localStorage.getItem('loggedDietomateUserToken'),
-    })
+      && props.login({
+        name: localStorage.getItem('loggedDietomateUsername'),
+        email: localStorage.getItem('loggedDietomateUserEmail'),
+        token: localStorage.getItem('loggedDietomateUserToken'),
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const displayCorrectMenu = () => {
     return localStorage.getItem('loggedDietomateUsername')
-      ? <LoggedInMenu />
-      : <LoggedOutMenu />
+      ? <LoggedInMenu itemColor={itemColor} />
+      : <LoggedOutMenu itemColor={itemColor} />
+  }
+
+  const itemColor = {
+    color: '#21ba45',
   }
 
   return (
@@ -34,8 +38,9 @@ const NavigationBar = props => {
       visible
       direction='top'>
       <Menu.Item header as={Link} to='/'>
-        <Icon name='lemon outline' />
-        <p>Dietomate - Automate Your Diet!</p>
+        <Icon name='lemon outline'
+          color='green' />
+        <p style={itemColor}>Dietomate - Automate Your Diet!</p>
       </Menu.Item>
       {displayCorrectMenu()}
     </Sidebar>

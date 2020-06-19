@@ -55,8 +55,8 @@ const DietForm = props => {
   }
 
   return (
-    <Segment>
-    <Header content='Get Your Nutrition Plan!' style={{marginBottom: '2%'}} />
+    <Segment color='green'>
+      <Header content='Get Your Nutrition Plan!' style={{marginBottom: '2%'}} color='green' />
       <Form as={Grid} columns={2} centered padded divided='vertically' loading={loading}>
         <Grid.Row>
           <Grid.Column textAlign='center' verticalAlign='middle'>
@@ -68,18 +68,21 @@ const DietForm = props => {
                 name="lose-weight"
                 content="Lose weight"
                 active={activeTarget === 'lose-weight'}
+                color={activeTarget === 'lose-weight' ? 'green' : null}
                 onClick={(event, { name }) => setactiveTarget(name)}
               />
               <Menu.Item
                 name="gain-muscle"
                 content="Gain muscle"
                 active={activeTarget === 'gain-muscle'}
+                color={activeTarget === 'gain-muscle' ? 'green' : null}
                 onClick={(event, { name }) => setactiveTarget(name)}
               />
               <Menu.Item
                 name="maintain"
                 content="Maintain"
                 active={activeTarget === 'maintain'}
+                color={activeTarget === 'maintain' ? 'green' : null}
                 onClick={(event, { name }) => setactiveTarget(name)}
               />
             </Menu>
@@ -128,19 +131,21 @@ const DietForm = props => {
                 name="male"
                 content="Male"
                 active={activeSex === 'male'}
+                color={activeSex === 'male' ? 'green' : null}
                 onClick={(event, { name }) => setactiveSex(name)}
               />
               <Menu.Item
                 name="female"
                 content="Female"
                 active={activeSex === 'female'}
+                color={activeSex === 'female' ? 'green' : null}
                 onClick={(event, { name }) => setactiveSex(name)}
               />
             </Menu>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Button type="submit" onClick={handleSubmit}
+          <Button type="submit" onClick={handleSubmit} color='green'
             disabled={!activeTarget || !activeAge || !activeHeight || !activeSex || !activeWeight}>Get the plan!
           </Button>
         </Grid.Row>
