@@ -4,6 +4,7 @@ import HomeTitle from './HomeTitle'
 import DietForm from './DietForm'
 import NutritionPlan from './NutritionPlan'
 import NavigationBar from './NavigationBar'
+import LearningMaterial from './LearningMaterial'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -17,6 +18,7 @@ const Home = props => {
           <Route exact path='/diet-form'><DietForm /></Route>
           <Route exact path='/nutrition-plans'><NutritionPlan /></Route>
           <Route exact path='/my-plans'></Route>
+          <Route exact path='/learn'><LearningMaterial /></Route>
         </Switch>
       </Container>
     </Router>
