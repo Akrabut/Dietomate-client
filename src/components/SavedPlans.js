@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getPlans } from '../services/get-plans'
-import { Card, Container, Header } from 'semantic-ui-react'
+import { Card, Container, Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setPlan } from '../actions/singlePlan' 
@@ -37,7 +37,11 @@ const SavedPlans = props => {
             onClick={() => handleClick(i)}
             as={Link}
             to={'single-nutrition-plan'}>
-            <Card.Header>{`Plan ${i + 1} - ${plan.calories} Calories`}</Card.Header>
+            <Image 
+              src={`https://source.unsplash.com/random/400x400/?fruit${i}`}
+              wrapped ui={false}
+            />
+            <Card.Header style={{fontSize: '1.3em'}}>{`Plan ${i + 1} - ${plan.calories} Calories`}</Card.Header>
           </Card>
         ))}
       </Card.Group>
