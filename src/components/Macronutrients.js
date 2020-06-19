@@ -42,7 +42,7 @@ const Macronutrients = ({ reqs, sum, amountColor }) => {
           Fiber
           <Progress
             percent={Math.round(sum.macronutrients.fiber / reqs.macronutrients.fiber * 100)}
-            color={amountColor(reqs.macronutrients.fat, sum.macronutrients.fat)}
+            color={amountColor(reqs.macronutrients.fiber, sum.macronutrients.fiber)}
             progress>
             {`${Math.round(sum.macronutrients.fiber)}/${Math.round(reqs.macronutrients.fiber)}`}
           </Progress>

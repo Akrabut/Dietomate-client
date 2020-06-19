@@ -6,10 +6,15 @@ import { connect } from 'react-redux'
 const NutritionPlan = props => {
   const [currentPlan, setCurrentPlan] = useState(0)
 
+  const setNextPlan = () => {
+    setCurrentPlan((currentPlan + 1) % props.planResponse.plans.length)
+    console.log(currentPlan);
+  }
+
   console.log(props.planResponse);
   return (
     <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
-      <Foods planObject={props.planResponse.plans[currentPlan]}/>
+      <Foods planObject={props.planResponse.plans[currentPlan]} setNextPlan={setNextPlan}/>
       <Nutrients planObject={props.planResponse.plans[currentPlan]} constraints={props.planResponse.reqs} />
     </div>
   )

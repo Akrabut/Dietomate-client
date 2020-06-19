@@ -1,7 +1,8 @@
 import React from 'react'
 import { Table, Header, Segment } from 'semantic-ui-react'
+import MenuButtons from './MenuButtons'
 
-const Foods = ({ planObject }) => {
+const Foods = ({ planObject, setNextPlan }) => {
   return (
     <Segment floated='left' compact raised color='green'>
       <Header color='green'>Foods</Header>
@@ -26,6 +27,7 @@ const Foods = ({ planObject }) => {
           })}
         </Table.Body>
       </Table>
+      <MenuButtons setNextPlan={setNextPlan} />
     </Segment>
   )
 }
