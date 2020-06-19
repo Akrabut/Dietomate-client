@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const NavigationBar = props => {
-
   useEffect(() => {
     // this might seem redundant right now, but will be of use after farther development
     localStorage.getItem('loggedDietomateUsername')

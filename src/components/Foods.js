@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Header, Segment } from 'semantic-ui-react'
 import MenuButtons from './MenuButtons'
 
-const Foods = ({ planObject, setNextPlan, currentPlanId }) => {
+const Foods = ({ planObject, setNextPlan, currentPlanId, buttons }) => {
   return (
     <Segment floated='left' compact raised color='green'>
       <Header color='green'>Foods</Header>
@@ -27,7 +27,7 @@ const Foods = ({ planObject, setNextPlan, currentPlanId }) => {
           })}
         </Table.Body>
       </Table>
-      <MenuButtons setNextPlan={setNextPlan} currentPlanId={currentPlanId} />
+      {buttons ? <MenuButtons setNextPlan={setNextPlan} currentPlanId={currentPlanId} /> : null}
     </Segment>
   )
 }

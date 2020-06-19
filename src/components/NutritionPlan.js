@@ -8,13 +8,11 @@ const NutritionPlan = props => {
 
   const setNextPlan = () => {
     setCurrentPlan((currentPlan + 1) % props.planResponse.plans.length)
-    console.log(currentPlan);
   }
 
-  console.log(props.planResponse);
   return (
     <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
-      <Foods planObject={props.planResponse.plans[currentPlan]} setNextPlan={setNextPlan} currentPlanId={props.planResponse.plans[currentPlan]._id} />
+      <Foods planObject={props.planResponse.plans[currentPlan]} setNextPlan={setNextPlan} currentPlanId={props.planResponse.plans[currentPlan]._id} buttons={true} />
       <Nutrients planObject={props.planResponse.plans[currentPlan]} constraints={props.planResponse.reqs} />
     </div>
   )
