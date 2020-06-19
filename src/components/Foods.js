@@ -14,8 +14,8 @@ const Foods = ({ planObject, setNextPlan, currentPlanId, buttons }) => {
             <Table.HeaderCell textAlign='center'>Calories</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
+        {console.log(planObject)}
           {planObject['foods'].map((food, i) => {
             return (
               <Table.Row key={`row ${i}`}>

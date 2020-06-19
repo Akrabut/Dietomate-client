@@ -30,7 +30,6 @@ const SavedPlans = props => {
     <Container textAlign='center'>
       <Header color='green'>My Saved Plans</Header>
       <Card.Group centered>
-      {console.log(plans)}
         {plans.map((plan, i) => (
           <Card raised
             color='green'

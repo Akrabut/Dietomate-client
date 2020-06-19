@@ -6,7 +6,6 @@ const set = reqs => {
     try {
       let res = await sendDietForm(reqs)
       normalizeFoodProperties(res)
-      console.log(res);
       dispatch({
         type: 'SET',
         data: {
@@ -14,6 +13,7 @@ const set = reqs => {
           plans: res,
         }
       })
+      localStorage.setItem('loggedDietomateUserReqs', JSON.stringify(reqs))
     } catch(err) {
       // TODO: HANDLE ERRORS
       console.log(err);

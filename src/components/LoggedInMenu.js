@@ -13,7 +13,6 @@ const LoggedInMenu = props => {
         to={'my-plans'}
         name='My Plans'
         content='My Plans'
-        onClick={() => console.log('My Plans')}
         style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
@@ -28,7 +27,6 @@ const LoggedInMenu = props => {
         to='learn'
         name='Learn'
         content='Learn'
-        onClick={() => console.log('Learn')}
         style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
