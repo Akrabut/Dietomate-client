@@ -9,8 +9,8 @@ const Minerals = ({ reqs, sum, amountColor }) => {
   }
 
   return (
-    <Segment compact raised style={{ width: '20%', marginTop: 0 }}>
-      <Header>Minerals</Header>
+    <Segment compact raised style={{ width: '20%', marginTop: 0 }} color='green'>
+      <Header color='green'>Minerals</Header>
       <List>
         {Object.keys(sum['minerals']).map(mineral => {
           /* this piece of sphaggeti takes an object with 'vitamin_x' keys and turns it into Vitamin X strings*/

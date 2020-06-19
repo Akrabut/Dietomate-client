@@ -20,11 +20,13 @@ const Nutrients = ({ planObject, constraints }) => {
 
   return (
     <div style={{display: 'flex'}}>
-      <Macronutrients reqs={reqs} sum={sum} />
+      <Macronutrients reqs={reqs} sum={sum} amountColor={amountColor} />
       <Vitamins reqs={reqs} sum={sum} amountColor={amountColor} />
       <Minerals reqs={reqs} sum={sum} amountColor={amountColor} />
     </div>
   )
 }
+
+
 
 export default Nutrients

@@ -9,8 +9,8 @@ const LoggedInMenu = props => {
     <Menu.Menu
       position='right'>
       <Menu.Item
-      as={Link}
-      to={'my-plans'}
+        as={Link}
+        to={'my-plans'}
         name='My Plans'
         content='My Plans'
         onClick={() => console.log('My Plans')}
@@ -24,8 +24,8 @@ const LoggedInMenu = props => {
         style={props.itemColor}>
       </Menu.Item>
       <Menu.Item
-      as={Link}
-      to='learn'
+        as={Link}
+        to='learn'
         name='Learn'
         content='Learn'
         onClick={() => console.log('Learn')}

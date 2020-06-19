@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 const NutritionPlan = props => {
   const [currentPlan, setCurrentPlan] = useState(0)
 
+  console.log(props.planResponse);
   return (
     <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
       <Foods planObject={props.planResponse.plans[currentPlan]}/>

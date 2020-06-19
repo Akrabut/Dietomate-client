@@ -9,17 +9,17 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Home = props => {
   return (
-    < Router >
-    <NavigationBar />
+    <Router>
+      <NavigationBar />
       <Container textAlign='center' style={{ marginTop: '5vw' }}>
-      <Switch>
-        <Route exact path='/'><HomeTitle /></Route>
-        <Route exact path='/diet-form'><DietForm /></Route>
-        <Route exact path='/nutrition-plan'><NutritionPlan /></Route>
-        <Route exact path='/my-plans'></Route>
-      </Switch>
-    </Container>
-  </Router >
+        <Switch>
+          <Route exact path='/'><HomeTitle /></Route>
+          <Route exact path='/diet-form'><DietForm /></Route>
+          <Route exact path='/nutrition-plans'><NutritionPlan /></Route>
+          <Route exact path='/my-plans'></Route>
+        </Switch>
+      </Container>
+    </Router>
   )
 }
 

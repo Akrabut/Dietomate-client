@@ -3,9 +3,9 @@ import { Table, Header, Segment } from 'semantic-ui-react'
 
 const Foods = ({ planObject }) => {
   return (
-    <Segment floated='left' compact raised>
-      <Header>Foods</Header>
-      <Table>
+    <Segment floated='left' compact raised color='green'>
+      <Header color='green'>Foods</Header>
+      <Table color='green'>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell textAlign='center'>Food</Table.HeaderCell>

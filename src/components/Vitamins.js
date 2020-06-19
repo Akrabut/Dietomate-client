@@ -9,8 +9,8 @@ const Vitamins = ({ reqs, sum, amountColor }) => {
   }
 
   return (
-    <Segment compact raised style={{ width: '20%', marginTop: 0, marginRight: '1em', marginLeft: '1em' }}>
-      <Header>Vitamins</Header>
+    <Segment compact raised style={{ width: '20%', marginTop: 0, marginRight: '1em', marginLeft: '1em' }} color='green'>
+      <Header color='green'>Vitamins</Header>
       <List>
         {Object.keys(sum['vitamins']).map(vitamin => {
           /* this piece of spaghetti takes an object with 'vitamin_x' keys and turns it into Vitamin X strings*/

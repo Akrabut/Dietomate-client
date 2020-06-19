@@ -3,6 +3,7 @@ import { Segment, Grid, Form, Menu, Button, Header } from 'semantic-ui-react'
 import { calcBMR, calories } from '../helpers/dietForm'
 import { connect } from 'react-redux'
 import { set, empty } from '../actions/planResponse'
+import { useHistory } from "react-router-dom";
 
 const DietForm = props => {
   const [loading, setLoading] = useState(false)
@@ -13,6 +14,8 @@ const DietForm = props => {
   const [activeAge, setactiveAge] = useState('')
   const [activeWeight, setactiveWeight] = useState('')
   const [activeHeight, setactiveHeight] = useState('')
+
+  const history = useHistory();
 
   useEffect(() => {
     props.empty()
@@ -52,11 +55,12 @@ const DietForm = props => {
       }
     })
     setLoading(false)
+    history.push('/nutrition-plans')
   }
 
   return (
     <Segment color='green'>
-      <Header content='Get Your Nutrition Plan!' style={{marginBottom: '2%'}} color='green' />
+      <Header content='Get Your Nutrition Plan!' style={{ marginBottom: '2%' }} color='green' />
       <Form as={Grid} columns={2} centered padded divided='vertically' loading={loading}>
         <Grid.Row>
           <Grid.Column textAlign='center' verticalAlign='middle'>
@@ -118,7 +122,7 @@ const DietForm = props => {
             <Form.Input placeholder="Enter in centimeters"
               type="text" minLength="3" maxLength="3"
               value={activeHeight} onChange={validateHeight} style={{ width: '60%' }}
-              />
+            />
           </Form.Field>
         </Grid.Row>
         <Grid.Row>
@@ -145,7 +149,10 @@ const DietForm = props => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Button type="submit" onClick={handleSubmit} color='green'
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            color='green'
             disabled={!activeTarget || !activeAge || !activeHeight || !activeSex || !activeWeight}>Get the plan!
           </Button>
         </Grid.Row>
