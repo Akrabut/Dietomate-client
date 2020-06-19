@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Button, Container } from 'semantic-ui-react'
+import { savePlan } from '../services/save-plan'
 
 const MenuButtons = props => {
   const [saved, setSaved] = useState(false)
 
-  const handleSave = () => {
-
+  const handleSave = async () => {
+    await savePlan(props.currentPlanId, localStorage.getItem('loggedDietomateUserId'))
+    setSaved(true)
   }
 
   return (
@@ -14,7 +16,7 @@ const MenuButtons = props => {
         icon='save outline'
         content='Save Plan'
         color='green'
-        active={!saved}
+        disabled={saved}
         onClick={handleSave}
       />
       <Button

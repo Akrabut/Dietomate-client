@@ -14,7 +14,7 @@ const NutritionPlan = props => {
   console.log(props.planResponse);
   return (
     <div style={{ marginTop: '4vw', marginBottom: '1vw' }}>
-      <Foods planObject={props.planResponse.plans[currentPlan]} setNextPlan={setNextPlan}/>
+      <Foods planObject={props.planResponse.plans[currentPlan]} setNextPlan={setNextPlan} currentPlanId={props.planResponse.plans[currentPlan]._id} />
       <Nutrients planObject={props.planResponse.plans[currentPlan]} constraints={props.planResponse.reqs} />
     </div>
   )

@@ -12,6 +12,7 @@ const NavigationBar = props => {
     // this might seem redundant right now, but will be of use after farther development
     localStorage.getItem('loggedDietomateUsername')
       && props.login({
+        _id: localStorage.getItem('loggedDietomateUserId'),
         name: localStorage.getItem('loggedDietomateUsername'),
         email: localStorage.getItem('loggedDietomateUserEmail'),
         token: localStorage.getItem('loggedDietomateUserToken'),
