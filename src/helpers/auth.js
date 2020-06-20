@@ -10,7 +10,6 @@ const removeUserFromLocalStorage = () => {
   localStorage.removeItem('loggedDietomateUsername')
   localStorage.removeItem('loggedDietomateUserEmail')
   localStorage.removeItem('loggedDietomateUserToken')
-  localStorage.removeItem('loggedDietomateUserReqs')
 }
 
 export {
