@@ -10,6 +10,11 @@ const MenuButtons = props => {
     setSaved(true)
   }
 
+  handleNext = () => {
+    props.setNextPlan()
+    setSaved(false)
+  }
+
   return (
     <Container fluid>
       <Button
@@ -22,7 +27,7 @@ const MenuButtons = props => {
       <Button
         icon='redo'
         content='Next Plan'
-        onClick={() => props.setNextPlan()}
+        onClick={handleNext}
       />
     </Container>
   )
