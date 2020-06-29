@@ -2,7 +2,7 @@
 
 ## How to run
 
-* Prerequisites - Browser, Node.js, NPM
+* Prerequisites - Browser, Node.js
 1. `npm i`
 2. Start the server
 3. `npm start`
